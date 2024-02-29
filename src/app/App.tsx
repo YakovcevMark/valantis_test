@@ -1,32 +1,38 @@
 import React from 'react';
-import 'app/App.css';
-import {Pagination} from "components/Pagination/Pagination";
+import {Pagination} from "common/components/Pagination/Pagination";
 import styled from "styled-components";
 import {useInitializeApp} from "app/useInitializeApp";
+import {ProductsTable} from "common/components/ProductsTable/ProductsTable";
+import {FilterBlock} from "common/components/SearchBlock/SearchBlock";
+import {Preloader} from "common/components/Preloader/Preloader";
 
 export const App = () => {
 
     const {
-        page, setPage, totalProductsCount,
-        productsFields, products,
-        isAppInitialized, isProductsFetching
+        isAppInitialized,
     } = useInitializeApp()
-
-
+    // return <Preloader/>
     return isAppInitialized ? (
         <SApp>
-            <Pagination
-                pageSize={50}
-                totalItemsCount={totalProductsCount}
-                currentPage={page}
-                pageChanged={setPage}/>
+            <h1>
+                Valantis TestApp
+            </h1>
+            <FilterBlock/>
+            <Pagination/>
+            <ProductsTable/>
         </SApp>
-    ) : <div>Loading.....</div>;
+    ) : <Preloader/>;
 }
+
+
 const SApp = styled.main`
-    height: 100vh;
-    width: 100vw;
+    border-radius: 58px;
+    padding: 10px;
+    margin: 10px auto;
+    min-height: 95vh;
+    width: 90vw;
     display: grid;
-    grid-template-columns: ;
+    background-color: dodgerblue;
+    grid-template-rows:repeat(3, 80px) 7fr;
 `
 
