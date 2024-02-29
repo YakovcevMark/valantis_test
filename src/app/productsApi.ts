@@ -34,7 +34,7 @@ const staggeredBaseQueryWithBailOut = retry(
         )
 
         if (result.meta && result.error) {
-            if(result.meta.response && result.error.data) {
+            if (result.meta.response && result.error.data) {
                 if (result.meta.response.status >= 500) {
                     console.warn(`Error status: ${result.meta.response.status}\nError data: ${result.error.data}`)
                 }
@@ -100,7 +100,10 @@ export const productsApi = createApi({
                 url: "",
                 method: 'POST',
                 body: {
-                    params,
+                    params: {
+                        ...params,
+                        price: Number(params.price)
+                    },
                     action: "filter"
                 }
             }),
