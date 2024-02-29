@@ -49,7 +49,7 @@ export const ProductsTable =
                                             brand={p.brand}/>
                                     ) : (
                                         <tr>
-                                            <STd colSpan={4}>Нет продукции соответсвующей поиску...</STd>
+                                            <STd colSpan={4}>Нет продукции соответствующей поиску...</STd>
                                         </tr>
                                     )
                                 }

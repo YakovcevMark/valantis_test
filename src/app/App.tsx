@@ -11,7 +11,7 @@ export const App = () => {
     const {
         isAppInitialized,
     } = useInitializeApp()
-    // return <Preloader/>
+
     return isAppInitialized ? (
         <SApp>
             <h1>
@@ -32,7 +32,7 @@ const SApp = styled.main`
     min-height: 95vh;
     width: 90vw;
     display: grid;
-    background-color: dodgerblue;
+    background-color: #8793d9b0;
     grid-template-rows:repeat(3, 80px) 7fr;
 `
 
