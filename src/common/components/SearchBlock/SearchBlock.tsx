@@ -1,5 +1,5 @@
 import React, {memo, useEffect, useState} from "react";
-import {Product, useFetchProductsIdsQuery, useLazyFilterProductsQuery} from "app/productsApi";
+import {useFetchProductsIdsQuery, useLazyFilterProductsQuery} from "app/productsApi";
 import {useDebounce} from "@uidotdev/usehooks";
 import {useAppDispatch} from "common/hooks/hooks";
 import {setProductsIds} from "app/appSlice";
@@ -7,8 +7,15 @@ import {isFilterNotEmpty} from "utils/isFilterNotEmpty/isFilterNotEmpty";
 import {convertFilterValues} from "utils/convertFilterValues/convertFilterValues";
 import {SSearchBlock, SSettingsBlock} from "common/components/SearchBlock/styles";
 
-type Filter = Partial<Product>
+type Filter = {
+    [key: string]: string | number
+}
 
+const inputs = [
+    {title: "Поиск по имени товара", value: "product"},
+    {title: "Поиск по цене", value: "price"},
+    {title: "Поиск по бренду", value: "brand"}
+]
 export const FilterBlock =
     memo(() => {
 
@@ -50,28 +57,15 @@ export const FilterBlock =
 
             return (
                 <SSettingsBlock>
-                    <SSearchBlock>
-                        <h2>Поиск по имени товара</h2>
-                        <input
-                            value={filter["product"]}
-                            onChange={(e) => handleSetFilter("product", e.currentTarget.value)}
-                            type="search"/>
-                    </SSearchBlock>
-                    <SSearchBlock>
-                        <h2>Поиск по цене</h2>
-                        <input
-                            min="0"
-                            value={filter["price"]}
-                            onChange={(e) => handleSetFilter("price", e.currentTarget.value)}
-                            type="number"/>
-                    </SSearchBlock>
-                    <SSearchBlock>
-                        <h2>Поиск по бренду</h2>
-                        <input
-                            value={filter["brand"]}
-                            onChange={(e) => handleSetFilter("brand", e.currentTarget.value)}
-                            type="search"/>
-                    </SSearchBlock>
+                    {inputs.map((item, i) =>
+                        <SSearchBlock key={i}>
+                            <h2>{item.title}</h2>
+                            <input
+                                value={filter[item.value]}
+                                onChange={(e) => handleSetFilter(item.value, e.currentTarget.value)}
+                                type={i === 1 ? "number" : "search"}/>
+                        </SSearchBlock>
+                    )}
                 </SSettingsBlock>
             )
 
