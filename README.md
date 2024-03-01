@@ -4,4 +4,4 @@ This project was uploaded on [GitHub Pages](https://yakovcevmark.github.io/valan
 
 ## Stack
 
-RTK Query, styled components, TS.
+React, TS, RTK Query, Styled Components.
