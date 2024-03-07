@@ -1,16 +1,17 @@
 import React from 'react';
 import {Pagination} from "common/components/Pagination/Pagination";
 import styled from "styled-components";
-import {useInitializeApp} from "app/useInitializeApp";
 import {ProductsTable} from "common/components/ProductsTable/ProductsTable";
 import {FilterBlock} from "common/components/SearchBlock/SearchBlock";
 import {Preloader} from "common/components/Preloader/Preloader";
+import {useFetchProductsIdsQuery} from "app/productsApi";
 
 export const App = () => {
 
     const {
-        isAppInitialized,
-    } = useInitializeApp()
+        isSuccess: isAppInitialized,
+    } = useFetchProductsIdsQuery(undefined)
+
 
     return isAppInitialized ? (
         <SApp>
