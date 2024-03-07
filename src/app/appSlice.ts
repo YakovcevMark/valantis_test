@@ -23,7 +23,7 @@ const appSlice = createSlice({
         builder
             .addMatcher(productsApi.endpoints?.fetchProductsIds.matchFulfilled,
                 (state, action) => {
-                    state.productsIds = action.payload.result
+                    state.productsIds = action.payload
                     state.page = 1
                 })
             .addMatcher(productsApi.endpoints?.filterProducts.matchFulfilled,

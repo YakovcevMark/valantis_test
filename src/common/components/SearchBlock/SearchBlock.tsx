@@ -41,7 +41,7 @@ export const FilterBlock =
                     if (isFilterNotEmpty(debouncedFilter)) {
                         filterProducts(convertFilterValues(debouncedFilter))
                     } else {
-                        initialProductsIds && dispatch(setProductsIds(initialProductsIds.result))
+                        initialProductsIds && dispatch(setProductsIds(initialProductsIds))
                     }
                 }
             }, [debouncedFilter, filterProducts, initialProductsIds, dispatch]);

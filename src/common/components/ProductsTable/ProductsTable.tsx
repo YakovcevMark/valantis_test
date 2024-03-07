@@ -39,8 +39,8 @@ export const ProductsTable =
                             </tbody>
                         ) : (
                             <tbody>
-                                {products?.result.length
-                                    ? products?.result.map(p =>
+                                {products?.length
+                                    ? products?.map(p =>
                                         <ProductTableNotation
                                             key={p.id}
                                             id={p.id}

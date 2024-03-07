@@ -50,7 +50,7 @@ export const productsApi = createApi({
     reducerPath: "products",
     baseQuery: staggeredBaseQueryWithBailOut,
     endpoints: build => ({
-        fetchProductsIds: build.query<Response<string []>, void | Partial<Params<{}>>>({
+        fetchProductsIds: build.query<string [], void | Partial<Params<{}>>>({
             query: (params) => ({
                 url: "",
                 method: 'POST',
@@ -60,9 +60,9 @@ export const productsApi = createApi({
                 }
             }),
             transformResponse: (response: Response<string []>) =>
-                ({result: Array.from(new Set(response.result))}),
+                (Array.from(new Set(response.result))),
         }),
-        fetchProducts: build.query<Response<Array<Product>>,
+        fetchProducts: build.query<Array<Product>,
             void | { ids: string[] }>({
             query: (params) => ({
                 url: "",
@@ -81,7 +81,7 @@ export const productsApi = createApi({
                         set.add(item.id)
                     }
                 })
-                return {result: output}
+                return output
             },
         }),
         fetchProductsFields: build.query<Response<string []>,
